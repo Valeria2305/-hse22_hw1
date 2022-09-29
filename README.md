@@ -19,8 +19,11 @@ seqtk sample -s523 oilMP_S4_L001_R1_002.fastq 1500000 > matep2.fastq
 mkdir fastqc
 ls sub* matep* | xargs -tI{} fastqc -o fastqc {}
 ```
-- Оценка количества исходных чтений методом multiQC:
+- Создание общей статистики при помощи multiQC:
 ```
 mkdir multiqc
 multiqc -o multiqc fastqc
 ```
+![<img width="711" alt="image" src="https://user-images.githubusercontent.com/77625525/193105953-d1727a92-1372-4d40-bb67-434fd61669ee.png">
+]
+
