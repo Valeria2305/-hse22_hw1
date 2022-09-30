@@ -31,7 +31,7 @@ multiqc -o multiqc fastqc
 - Подрезание чтений по качеству и удаление адаптеров:
 ```
 platanus_trim sub*
-platanus_internal_trim matepair*
+platanus_internal_trim matep*
 ```
 - Удаление исходных файлов:
 ```
@@ -47,10 +47,28 @@ ls sub* matep*| xargs -tI{} fastqc -o fastqc_trimmed {}
 ```
 - Создание общей статистики при помощи multiQC:
 ```
-mkdir fastqc_trimmed
-ls sub* matep*| xargs -tI{} fastqc -o fastqc_trimmed {}
+mkdir multiqctrimmed
+multiqc -o multiqctrimmed fastqc_trimmed
 ```
 <img width="721" alt="image" src="https://user-images.githubusercontent.com/77625525/193212463-21014e93-a3f3-4103-8978-2967cb273e31.png">
 <img width="696" alt="image" src="https://user-images.githubusercontent.com/77625525/193212683-e1faadab-650f-4b2b-86df-5b4114f1b386.png">
 
-
+- Сбор контиг c обрезанных чтений при помощи "platanus assemble":
+```
+time platanus assemble -o Poil -f sub1.fastq.trimmed sub2.fastq.trimmed 2> assemble.log
+```
+-  Сбор скаффолдов при помощи "platanus scaffold":
+```
+time platanus scaffold -o Poil -c Poil_contig.fa -IP1 sub1.fastq.trimmed sub2.fastq.trimmed -OP2 matep1.fastq.int_trimmed matep2.fastq.int_trimmed 2> scaffold.log
+```
+- Уменьшение промежутков:
+```
+time platanus gap_close -o Poil -c Poil_scaffold.fa -IP1 sub1.fastq.trimmed sub2.fastq.trimmed -OP2 matep1.fastq.int_trimmed  matep2.fastq.int_trimmed 2> gapclose.log
+```
+- Удаление файлов с подрезанными чтениями:
+```
+rm matep1.fastq.int_trimmed
+rm matep2.fastq.int_trimmed
+rm sub1.fastq.trimmed
+rm sub2.fastq.trimmed
+```
