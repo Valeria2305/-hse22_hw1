@@ -46,8 +46,8 @@ ls sub* matep*| xargs -tI{} fastqc -o fastqc_trimmed {}
 ```
 - Создание общей статистики при помощи multiQC:
 ```
-mkdir multiqc_trimmed
-multiqc -o multiqc_trimmed fastqc_trimmed
+mkdir fastqc_trimmed
+ls sub* matep*| xargs -tI{} fastqc -o fastqc_trimmed {}
 ```
 <img width="721" alt="image" src="https://user-images.githubusercontent.com/77625525/193212463-21014e93-a3f3-4103-8978-2967cb273e31.png">
 <img width="696" alt="image" src="https://user-images.githubusercontent.com/77625525/193212683-e1faadab-650f-4b2b-86df-5b4114f1b386.png">
