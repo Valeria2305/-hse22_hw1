@@ -25,4 +25,7 @@ mkdir multiqc
 multiqc -o multiqc fastqc
 ```
 <img width="711" alt="image" src="https://user-images.githubusercontent.com/77625525/193105953-d1727a92-1372-4d40-bb67-434fd61669ee.png">
+<img width="695" alt="image" src="https://user-images.githubusercontent.com/77625525/193210991-558c5351-8615-49d0-950b-88658ea5aec8.png">
+<img width="704" alt="image" src="https://user-images.githubusercontent.com/77625525/193210932-ec381634-5da8-4e16-af6b-0cc1d85640d4.png">
+
 
