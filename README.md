@@ -145,3 +145,5 @@ print(f'Число гэпов для обрезанных чтений: {max_sca
 ```
 Общая длина гэпов для обрезанных чтений: 2409
 Число гэпов для обрезанных чтений: 10
+## ССЫЛКА НА GOOGLE COLAB: 
+https://colab.research.google.com/drive/1_Do0LP-mDxFZJBwWL_bUMDiw94r4sz83?usp=sharing
