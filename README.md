@@ -71,3 +71,77 @@ rm matep2.fastq.int_trimmed
 rm sub1.fastq.trimmed
 rm sub2.fastq.trimmed
 ```
+- Общая функция для подсчета:
+```
+def counter(f, text, outfile = True):
+    lengths = []
+    total_len = 0
+    num = 0
+    max_len = 0
+    length = 0
+    flag = 0
+    max_seq = ''
+    curr_seq = ''
+    for line in f:
+        if (line[0] == '>'):
+            if num != 0:
+                lengths.append(length)
+            num += 1
+            if length >= max_len:
+                max_len = length
+                max_seq = curr_seq
+            curr_seq = ''
+            length = 0
+        else:
+            curr_seq += line.strip()
+            length += len(line.strip())
+            total_len += len(line.strip())
+     
+    lengths.sort(reverse = True) 
+    for i in lengths:
+        flag += i
+        if flag >= total_len / 2:
+            if outfile == True:
+                print(f'Анализ {text}\n\
+Общее количество: {num},\n\
+Общая длина: {total_len},\n\
+Длина самого длинного: {max_len},\n\
+N50: {i}\n')
+            break
+    return max_seq
+```
+- Континги:
+```
+max_cont = get_info(open('Poil_contig.fa', 'r'), 'Контигов')
+```
+Анализ Контигов
+Общее количество: 610,
+Общая длина: 3924012,
+Длина самого длинного: 179307,
+N50: 53980
+- Скаффолды:
+```
+max_scaffolds = counter(open('Poil_scaffold.fa', 'r'), 'Скаффолдов')
+```
+Анализ Скаффолдов
+Общее количество: 68,
+Общая длина: 3876321,
+Длина самого длинного: 3832011,
+N50: 3832011
+- Количество гэпов:
+```
+print(f'Общая длина гэпов: {max_scaffolds.count("N")}')
+max_scaffolds = re.sub(r'N{2,}', 'N', max_scaffolds)
+print(f'Число гэпов: {max_scaffolds.count("N")}')
+```
+Общая длина гэпов: 6812
+Число гэпов: 65
+- Количество гэпов для уменьшенного числа:
+```
+max_scaffolds = counter(open('Poil_gapClosed.fa', 'r'), 'Скаффолдов', False)
+print(f'Общая длина гэпов для обрезанных чтений: {max_scaffolds.count("N")}')
+max_scaf = re.sub(r'N{2,}', 'N', max_scaffolds)
+print(f'Число гэпов для обрезанных чтений: {max_scaf.count("N")}')
+```
+Общая длина гэпов для обрезанных чтений: 2409
+Число гэпов для обрезанных чтений: 10
