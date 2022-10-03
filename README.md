@@ -155,9 +155,83 @@ print(f'Число гэпов для обрезанных чтений: {max_sca
 - Общая статистика multiQC для обрезанных чтений:
 <img width="705" alt="image" src="https://user-images.githubusercontent.com/77625525/193673308-f3e24fd4-4d97-4c56-9a65-dd136e883bfe.png">
 <img width="686" alt="image" src="https://user-images.githubusercontent.com/77625525/193673667-a6466ae0-8ec1-409f-a6d7-be8e0c00781b.png">
+- Общая функция для подсчета:
+```
+def counter(f, text, outfile = True):
+    lengths = []
+    total_len = 0
+    num = 0
+    max_len = 0
+    length = 0
+    flag = 0
+    max_seq = ''
+    curr_seq = ''
+    for line in f:
+        if (line[0] == '>'):
+            if num != 0:
+                lengths.append(length)
+            num += 1
+            if length >= max_len:
+                max_len = length
+                max_seq = curr_seq
+            curr_seq = ''
+            length = 0
+        else:
+            curr_seq += line.strip()
+            length += len(line.strip())
+            total_len += len(line.strip())
+     
+    lengths.sort(reverse = True) 
+    for i in lengths:
+        flag += i
+        if flag >= total_len / 2:
+            if outfile == True:
+                print(f'Анализ {text}\n\
+Общее количество: {num},\n\
+Общая длина: {total_len},\n\
+Длина самого длинного: {max_len},\n\
+N50: {i}\n')
+            break
+    return max_seq
+```
+- Континги:
+```
+max_cont = get_info(open('Poil_contig.fa', 'r'), 'Контигов')
+```
+Анализ Контигов
+Общее количество: 3425,
+Общая длина: 3915715,
+Длина самого длинного: 30735,
+N50: 4024
+- Скаффолды:
+```
+max_scaffolds = counter(open('Poil_scaffold.fa', 'r'), 'Скаффолдов')
+```
+Анализ Скаффолдов
+Общее количество: 473,
+Общая длина: 3869539,
+Длина самого длинного: 1286249,
+N50: 863189
 
-
-
+- Количество гэпов:
+```
+print(f'Общая длина гэпов: {max_scaffolds.count("N")}')
+max_scaffolds = re.sub(r'N{2,}', 'N', max_scaffolds)
+print(f'Число гэпов: {max_scaffolds.count("N")}')
+```
+Общая длина гэпов: 26056
+Число гэпов: 519
+- Количество гэпов для уменьшенного числа:
+```
+max_scaffolds = counter(open('Poil_gapClosed.fa', 'r'), 'Скаффолдов', False)
+print(f'Общая длина гэпов для обрезанных чтений: {max_scaffolds.count("N")}')
+max_scaf = re.sub(r'N{2,}', 'N', max_scaffolds)
+print(f'Число гэпов для обрезанных чтений: {max_scaf.count("N")}')
+```
+Общая длина гэпов для обрезанных чтений: 11379
+Число гэпов для обрезанных чтений: 43
+## Вывод 
+- 
 
 ## ССЫЛКА НА GOOGLE COLAB: 
 https://colab.research.google.com/drive/1_Do0LP-mDxFZJBwWL_bUMDiw94r4sz83?usp=sharing
