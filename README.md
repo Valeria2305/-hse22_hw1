@@ -209,6 +209,38 @@ max_contigs = counter(open('Poil_contig.fa', 'r'), 'Контигов')
 Длина самого длинного: 30735,
 N50: 4024
 
+- Скаффолды:
+
+```
+max_scaffolds = counter(open('Poil_scaffold.fa', 'r'), 'Скаффолдов')
+```
+Анализ Скаффолдов
+Общее количество: 473,
+Общая длина: 3869539,
+Длина самого длинного: 1286249,
+N50: 863189
+
+- Число гэпов:
+
+```
+print(f'Общая длина гэпов: {max_scaffolds.count("N")}')
+max_scaffolds = re.sub(r'N{2,}', 'N', max_scaffolds)
+print(f'Число гэпов: {max_scaffolds.count("N")}')
+```
+Общая длина гэпов: 26056
+Число гэпов: 519
+
+- Количество гэпов для обрезанного числа:
+
+```
+max_scaffolds = counter(open('Poil_gapClosed.fa', 'r'), 'Скаффолдов', False)
+print(f'Общая длина гэпов для обрезанных чтений: {max_scaffolds.count("N")}')
+max_scaf = re.sub(r'N{2,}', 'N', max_scaffolds)
+print(f'Число гэпов для обрезанных чтений: {max_scaf.count("N")}')
+```
+Общая длина гэпов для обрезанных чтений: 11379
+Число гэпов для обрезанных чтений: 43
+
 ## Вывод 
 
 ## ССЫЛКА НА GOOGLE COLAB: 
