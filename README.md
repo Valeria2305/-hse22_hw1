@@ -145,5 +145,19 @@ print(f'Число гэпов для обрезанных чтений: {max_sca
 ```
 Общая длина гэпов для обрезанных чтений: 2409
 Число гэпов для обрезанных чтений: 10
+
+## Дополнительная часть
+- Уменьшим число чтений в 10 раз. Для paired-end 500000 чтений, для mate-pairs 150000 чтений.
+- Проделаем те же действия, что и в первой части. 
+- Общая статистика multiQC для исходных чтений:
+<img width="711" alt="image" src="https://user-images.githubusercontent.com/77625525/193671896-d29b5b6b-b638-4a1a-9b2c-ad55f3fa674a.png">
+<img width="692" alt="image" src="https://user-images.githubusercontent.com/77625525/193672124-5f915c4a-a987-4a8d-85ae-135405b80522.png">
+- Общая статистика multiQC для обрезанных чтений:
+<img width="705" alt="image" src="https://user-images.githubusercontent.com/77625525/193673308-f3e24fd4-4d97-4c56-9a65-dd136e883bfe.png">
+<img width="686" alt="image" src="https://user-images.githubusercontent.com/77625525/193673667-a6466ae0-8ec1-409f-a6d7-be8e0c00781b.png">
+
+
+
+
 ## ССЫЛКА НА GOOGLE COLAB: 
 https://colab.research.google.com/drive/1_Do0LP-mDxFZJBwWL_bUMDiw94r4sz83?usp=sharing
