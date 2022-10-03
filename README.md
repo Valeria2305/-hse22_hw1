@@ -242,6 +242,8 @@ print(f'Число гэпов для обрезанных чтений: {max_sca
 Число гэпов для обрезанных чтений: 43
 
 ## Вывод 
+При изменении числа чтений до 10%: <br />
+1. Общее число контингов уменьшилось с 
 
 ## ССЫЛКА НА GOOGLE COLAB: 
 https://colab.research.google.com/drive/1_Do0LP-mDxFZJBwWL_bUMDiw94r4sz83?usp=sharing
