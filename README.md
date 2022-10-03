@@ -159,6 +159,7 @@ print(f'Число гэпов для обрезанных чтений: {max_sca
 <img width="705" alt="image" src="https://user-images.githubusercontent.com/77625525/193673308-f3e24fd4-4d97-4c56-9a65-dd136e883bfe.png">
 <img width="686" alt="image" src="https://user-images.githubusercontent.com/77625525/193673667-a6466ae0-8ec1-409f-a6d7-be8e0c00781b.png">
 - Общая функция для подсчета:
+
 ```
 def counter(f, text, outfile = True):
     lengths = []
@@ -196,52 +197,17 @@ def counter(f, text, outfile = True):
 N50: {i}\n')
             break
     return max_seq
- ```
- 
+```
 - Континги:
 
 ```
-max_cont = get_info(open('Poil_contig.fa', 'r'), 'Контигов')
+max_contigs = counter(open('Poil_contig.fa', 'r'), 'Контигов')
 ```
-
 Анализ Контигов
 Общее количество: 3425,
 Общая длина: 3915715,
 Длина самого длинного: 30735,
 N50: 4024
-
-- Скаффолды:
-
-```
-max_scaffolds = counter(open('Poil_scaffold.fa', 'r'), 'Скаффолдов')
-```
-
-Анализ Скаффолдов
-Общее количество: 473,
-Общая длина: 3869539,
-Длина самого длинного: 1286249,
-N50: 863189
-
-- Количество гэпов:
-
-```
-print(f'Общая длина гэпов: {max_scaffolds.count("N")}')
-max_scaffolds = re.sub(r'N{2,}', 'N', max_scaffolds)
-print(f'Число гэпов: {max_scaffolds.count("N")}')
-```
-
-Общая длина гэпов: 26056
-Число гэпов: 519
-- Количество гэпов для уменьшенного числа:
-```
-max_scaffolds = counter(open('Poil_gapClosed.fa', 'r'), 'Скаффолдов', False)
-print(f'Общая длина гэпов для обрезанных чтений: {max_scaffolds.count("N")}')
-max_scaf = re.sub(r'N{2,}', 'N', max_scaffolds)
-print(f'Число гэпов для обрезанных чтений: {max_scaf.count("N")}')
-```
-
-Общая длина гэпов для обрезанных чтений: 11379
-Число гэпов для обрезанных чтений: 43
 
 ## Вывод 
 
