@@ -5,7 +5,7 @@
 ln -s /usr/share/data-minor-bioinf/assembly/oil_R1.fastq
 ln -s /usr/share/data-minor-bioinf/assembly/oil_R2.fastq
 ln -s /usr/share/data-minor-bioinf/assembly/oilMP_S4_L001_R2_001.fastq
-ln -s /usr/share/data-minor-bioinf/assembly/oilMP_S4_L001_R1_001.fastq
+ln -s /usr/share/data-minor-bioinf/assembly/oilMP_S4_L001_R1_002.fastq
 ```
 - Создание random seed = 523 и выбор случайных 5.000.000 чтений типа paired-end и 1.500.000 чтений типа mate-pairs:
 ```
