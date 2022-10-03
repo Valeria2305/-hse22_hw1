@@ -214,6 +214,7 @@ max_scaffolds = counter(open('Poil_scaffold.fa', 'r'), 'Скаффолдов')
 N50: 863189
 
 - Количество гэпов:
+
 ```
 print(f'Общая длина гэпов: {max_scaffolds.count("N")}')
 max_scaffolds = re.sub(r'N{2,}', 'N', max_scaffolds)
@@ -222,12 +223,14 @@ print(f'Число гэпов: {max_scaffolds.count("N")}')
 Общая длина гэпов: 26056
 Число гэпов: 519
 - Количество гэпов для уменьшенного числа:
+
 ```
 max_scaffolds = counter(open('Poil_gapClosed.fa', 'r'), 'Скаффолдов', False)
 print(f'Общая длина гэпов для обрезанных чтений: {max_scaffolds.count("N")}')
 max_scaf = re.sub(r'N{2,}', 'N', max_scaffolds)
 print(f'Число гэпов для обрезанных чтений: {max_scaf.count("N")}')
 ```
+
 Общая длина гэпов для обрезанных чтений: 11379
 Число гэпов для обрезанных чтений: 43
 ## Вывод 
